@@ -1,6 +1,5 @@
 package com.example.pdftoserver;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -12,7 +11,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.FileUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -176,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
             Retrofit retrofit = builder.build();
             UploadPdf client = retrofit.create(UploadPdf.class);
 
-            File originalFile = FileUtils.getFile(this, fileUri);
+            File originalFile = new File(fileUri.getPath());
 
             RequestBody filePart = RequestBody.create(
                     MediaType.parse(getContentResolver().getType(fileUri)),
